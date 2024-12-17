@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="../static/favicon.png">
+    <title>IrisCTF 2025</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+    <style>
+        html {
+            font-family: "Kode Mono", monospace;
+            background-color: black;
+            font-weight: 400;
+            font-size: x-large;
+            font-style: normal;
+            color: whitesmoke;
+        }
+
+        h1 {
+            margin-bottom: -10px;
+        }
+
+        h3 {
+            margin-top: 5px;
+            margin-bottom: 0;
+        }
+
+        footer {
+            font-size: medium;
+        }
+
+        i {
+            font-size: x-small;
+            margin: 0 0 0 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container" style="justify-content: center; text-align: center;">
+    <img src="../static/loading.gif" alt="coming soon to a computer near you.">
+    <h1 id="timer">DD:HH:MM:SS</h1>
+    <small>dd:hh:mm:ss</small>
+</div>
+<!-- stop snooping around -->
+<div class="footer" style="text-align: center;">
+    <br/><br/>
+    <footer>
+        IrisCTF 2025 begins at 00:00:00, 4 January 2025 (UTC+0)<br/>
+        Registration opens soon.
+    </footer>
+</div>
+<script>
+    const countDownDate = new Date(1735948800000).getTime()
+    const x = setInterval(function () {
+        const now = new Date().getTime()
+        const distance = countDownDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24))
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000)
+
+        let time_str = String(days).padStart(2, "0") + ":"
+        time_str += String(hours).padStart(2, "0") + ":"
+        time_str += String(minutes).padStart(2, "0") + ":"
+        time_str += String(seconds).padStart(2, "0")
+
+        document.getElementById("timer").innerHTML = time_str
+        document.getElementById("submission_timer").innerHTML = time_str
+
+        if (distance < 0) {
+            clearInterval(x)
+            document.getElementById("timer").innerHTML = "00:00:00"
+        }
+    }, 1000)
+</script>
+</body>
+</html>
